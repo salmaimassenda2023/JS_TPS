@@ -41,6 +41,31 @@ document.body.addEventListener('keydown', (event) => {
   }
 });
 
+// Auto playing part
+let isAutoPlaying = false ;
+let intervalId ;
+const autoPlayButton = document.querySelector('.auto-play-button');
+autoPlayButton.addEventListener('click',
+    ()=>{
+       if(!isAutoPlaying){
+         intervalId= setInterval(
+             ()=>{
+               let playMove =pickComputerMove() ;
+               playGame(playMove);
+               isAutoPlaying=true;
+               autoPlayButton.textContent='Stop Auto Play'
+             }
+
+         ),9000
+
+       }else{
+         clearInterval(intervalId);
+         isAutoPlaying = false;
+         autoPlayButton.textContent='Auto Play'
+       }
+
+    }
+)
 
 
 
